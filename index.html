@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Allan Mwanga, full-stack developer and freelancer. Builder of ACPS HUB: smart solutions for better communities.">
+<title>Allan Mwanga_Hub</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: left-aligned column over a living network backdrop; oversized name is the one bold move, mono details keep it a developer's page */
+:root {
+  --bg: #060913;
+  --surface: rgba(14, 19, 33, 0.66);
+  --surface-solid: #0e1321;
+  --line: rgba(120, 140, 190, 0.2);
+  --fg: #eef1f8;
+  --muted: #a1abc2;
+  --accent: #ffb547;
+  --accent-ink: #1a1203;
+  --accent2: #3fd8c8;
+  --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-block: 0 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- Background ---------- */
+.bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.bg .glow { position: absolute; border-radius: 50%; filter: blur(90px); will-change: transform; }
+.bg .g1 { width: 56vmax; height: 56vmax; top: -22vmax; right: -16vmax; background: radial-gradient(circle, rgba(255,181,71,.30), rgba(255,181,71,0) 65%); animation: drift1 26s ease-in-out infinite alternate; }
+.bg .g2 { width: 62vmax; height: 62vmax; bottom: -28vmax; left: -22vmax; background: radial-gradient(circle, rgba(63,216,200,.24), rgba(63,216,200,0) 65%); animation: drift2 32s ease-in-out infinite alternate; }
+.bg .g3 { width: 40vmax; height: 40vmax; top: 38%; left: 46%; background: radial-gradient(circle, rgba(70,110,255,.16), rgba(70,110,255,0) 65%); animation: drift1 38s ease-in-out infinite alternate-reverse; }
+.bg .grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(140,160,210,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(140,160,210,.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 20%, transparent 78%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 20%, transparent 78%);
+}
+.bg canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.bg .vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 55%, rgba(6,9,19,.7) 100%); }
+@keyframes drift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(-6vmax, 7vmax) scale(1.12); } }
+@keyframes drift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(8vmax, -6vmax) scale(1.1); } }
+
+.wrap { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; }
+
+nav { display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: center; justify-content: space-between; padding-block: 24px; font-family: var(--mono); font-size: 13px; }
+nav .mark { color: var(--accent); text-decoration: none; font-weight: 500; }
+nav ul { display: flex; flex-wrap: wrap; gap: 8px 24px; list-style: none; margin: 0; padding: 0; }
+nav ul a { color: var(--muted); text-decoration: none; }
+nav ul a:hover { color: var(--fg); }
+
+.hero { padding-block: 64px 72px; }
+.eyebrow { font-family: var(--mono); font-size: 13px; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 20px; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; }
+.eyebrow .pulse { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); }
+.eyebrow .pulse::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(255,181,71,.6); animation: ping 2s infinite; }
+@keyframes ping { 70% { box-shadow: 0 0 0 10px rgba(255,181,71,0); } 100% { box-shadow: 0 0 0 0 rgba(255,181,71,0); } }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(48px, 11.5vw, 124px); line-height: 0.95; letter-spacing: -0.03em; margin: 0 0 28px; text-wrap: balance; }
+h1 span { color: var(--accent); }
+.lede { font-size: clamp(18px, 2.4vw, 22px); color: var(--muted); max-width: 38em; margin: 0 0 32px; text-wrap: pretty; }
+.lede b { color: var(--fg); font-weight: 500; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-block; font-family: var(--mono); font-size: 14px; padding: 12px 20px; border-radius: 6px; text-decoration: none; border: 1px solid var(--line); color: var(--fg); background: var(--surface); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 500; }
+.btn.primary:hover { filter: brightness(1.08); }
+
+section { padding-block: 56px; border-top: 1px solid var(--line); }
+h2 { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 4.5vw, 40px); letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 36px; text-wrap: balance; }
+.label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+
+/* Brand band */
+.brand { padding-block: 0 56px; border-top: 0; }
+.brand-card { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 32px; align-items: center; padding: 28px 32px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.brand-name { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 5vw, 46px); letter-spacing: -0.02em; line-height: 1; margin: 0; }
+.brand-name span { color: var(--accent2); }
+.brand-tag { margin: 0; color: var(--muted); font-size: 17px; text-wrap: pretty; }
+
+.about { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px; }
+.about p { margin: 0 0 16px; color: var(--muted); max-width: 36em; }
+.about p:first-child { color: var(--fg); }
+.facts { margin: 0; display: grid; align-content: start; font-family: var(--mono); font-size: 13px; }
+.facts div { display: flex; justify-content: space-between; gap: 16px; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.facts div:first-child { border-top: 1px solid var(--line); }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; text-align: right; }
+.status::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 8px; }
+
+.projects { display: grid; gap: 24px; }
+.project { padding: 32px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: border-color .25s, transform .25s; }
+.project:hover { border-color: var(--accent); transform: translateY(-2px); }
+.p-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px; margin-bottom: 8px; }
+.project h3 { font-family: var(--display); font-weight: 600; font-size: clamp(22px, 3.4vw, 28px); letter-spacing: -0.01em; margin: 0; }
+.year { font-family: var(--mono); font-size: 12px; color: var(--accent2); }
+.project > p { margin: 0 0 20px; color: var(--muted); max-width: 44em; }
+.feat { list-style: none; margin: 0 0 22px; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 28px; font-size: 14.5px; color: var(--fg); }
+.feat li { padding-left: 20px; position: relative; }
+.feat li::before { content: "›"; position: absolute; left: 4px; color: var(--accent); font-family: var(--mono); }
+.p-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.tags li { font-family: var(--mono); font-size: 12px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+.live { font-family: var(--mono); font-size: 13px; color: var(--accent-ink); background: var(--accent); padding: 9px 16px; border-radius: 6px; text-decoration: none; font-weight: 500; white-space: nowrap; }
+.live:hover { filter: brightness(1.08); }
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; }
+.skills ul { list-style: none; margin: 0; padding: 0; font-family: var(--mono); font-size: 14px; display: grid; gap: 8px; }
+.skills li::before { content: "› "; color: var(--accent); }
+
+.contact h2 { font-size: clamp(32px, 7vw, 64px); }
+.mail { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 28px; }
+.mail code { font-family: var(--mono); font-size: clamp(14px, 3.6vw, 20px); padding: 10px 16px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); user-select: all; overflow-wrap: anywhere; min-width: 0; }
+.copy { font-family: var(--mono); font-size: 13px; cursor: pointer; padding: 11px 16px; border-radius: 6px; border: 1px solid var(--line); background: transparent; color: var(--fg); }
+.copy:hover { border-color: var(--muted); }
+.social { display: flex; flex-wrap: wrap; gap: 8px 28px; font-family: var(--mono); font-size: 14px; }
+.social a { color: var(--muted); }
+.social a:hover { color: var(--accent); }
+
+footer { padding-top: 32px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+@media (max-width: 720px) {
+  .about { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .brand-card { grid-template-columns: minmax(0, 1fr); padding: 22px; }
+  .project { padding: 22px; }
+  .feat { grid-template-columns: minmax(0, 1fr); }
+  .hero { padding-block: 32px 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .bg .glow, .eyebrow .pulse::before { animation: none; }
+  .project { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true">
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="glow g3"></div>
+  <div class="grid"></div>
+  <canvas id="net"></canvas>
+  <div class="vignette"></div>
+</div>
+
+<div class="wrap">
+  <nav aria-label="Main">
+    <a class="mark" href="#top">Allan Mwanga_Hub</a>
+    <ul>
+      <li><a href="#about">about</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="top">
+    <p class="eyebrow"><span>Full-stack developer</span><span>/</span><span>Freelancer</span><span class="pulse">Open to work</span></p>
+    <h1>Allan Mwanga<span>.</span></h1>
+    <p class="lede">I build <b>practical web apps</b> that work on any device, even offline. From student tools to billing dashboards for small businesses, I turn everyday problems into software people use.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">See my work</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </header>
+
+  <section class="brand" aria-label="Brand">
+    <div class="brand-card">
+      <p class="brand-name">ACPS <span>HUB</span></p>
+      <p class="brand-tag">Building smart solutions for better communities through technology and innovation.</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <p class="label">About</p>
+    <h2>Small-time developer, real-world solutions.</h2>
+    <div class="about">
+      <div>
+        <p>I'm Allan, a full-stack developer and freelancer who loves the moment a messy, manual process becomes a clean app that just works.</p>
+        <p>I enjoy the craft side of the web: validation that catches mistakes early, responsive layouts, offline support, and interfaces that feel quick. Under the ACPS HUB brand, I build tools aimed at helping everyday communities through technology.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>role</dt><dd>Full-stack developer</dd></div>
+        <div><dt>work</dt><dd>Freelance</dd></div>
+        <div><dt>languages</dt><dd>English, Kiswahili</dd></div>
+        <div><dt>status</dt><dd class="status">Open to work</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="label">Projects</p>
+    <h2>Things I have built.</h2>
+    <div class="projects">
+      <article class="project">
+        <div class="p-head"><h3>ACPS Student Portal</h3><span class="year">2025–2026</span></div>
+        <p>One place for student life. Students create an account and manage grades, deadlines, classes, money and study time in a single app that syncs across devices and keeps working offline.</p>
+        <ul class="feat">
+          <li>GPA calculator across Years 1 to 5 with semester, year and cumulative results</li>
+          <li>Assignments, CATs and exams with countdowns</li>
+          <li>Reminders with notifications</li>
+          <li>Weekly timetable with an alert 15 minutes before class</li>
+          <li>Budget tracker with monthly charts and spending limit warnings</li>
+          <li>Focus timer with breaks and a daily streak</li>
+        </ul>
+        <div class="p-foot">
+          <ul class="tags"><li>JavaScript</li><li>PWA</li><li>Offline sync</li><li>Charts</li></ul>
+          <a class="live" href="https://aliwanga.github.io/acps-hub-project/" target="_blank" rel="noopener">Live demo ↗</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="p-head"><h3>Azani ISP System</h3><span class="year">2025–2026</span></div>
+        <p>Helps a small internet provider track customers, packages, payments and connection status from one dashboard, replacing paper records.</p>
+        <ul class="feat">
+          <li>Register, search, filter, sort and delete customers</li>
+          <li>Four internet packages with automatic monthly billing</li>
+          <li>One-click Paid/Unpaid and Suspend/Activate</li>
+          <li>Live dashboard: customers, active connections, revenue and outstanding balance</li>
+          <li>Package distribution chart</li>
+          <li>Validation for Kenyan phone numbers and unique account numbers</li>
+          <li>CSV export that opens in Excel</li>
+          <li>Light and dark mode, responsive, installable with offline support</li>
+        </ul>
+        <div class="p-foot">
+          <ul class="tags"><li>JavaScript</li><li>localStorage</li><li>PWA</li><li>Responsive</li></ul>
+          <a class="live" href="https://aliwanga.github.io/azani-isp-system/" target="_blank" rel="noopener">Live demo ↗</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="label">Skills</p>
+    <h2>What I work with.</h2>
+    <div class="skills">
+      <div><p class="label">Frontend</p><ul><li>HTML &amp; CSS</li><li>JavaScript</li><li>Responsive design</li><li>Light &amp; dark themes</li></ul></div>
+      <div><p class="label">App features</p><ul><li>Installable PWAs</li><li>Offline support</li><li>Form validation</li><li>Charts &amp; dashboards</li></ul></div>
+      <div><p class="label">Data</p><ul><li>localStorage</li><li>CSV export</li><li>Accounts &amp; sync</li></ul></div>
+      <div><p class="label">Tools</p><ul><li>Git &amp; GitHub</li><li>GitHub Pages</li></ul></div>
+      <div><p class="label">Spoken</p><ul><li>English</li><li>Kiswahili</li></ul></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <p class="label">Contact</p>
+    <h2>Need something built? Let's talk.</h2>
+    <div class="mail">
+      <code id="email">allanmwanga18@gmail.com</code>
+      <button class="copy" id="copy" type="button">Copy email</button>
+    </div>
+    <div class="social">
+      <a href="https://github.com/aliwanga" target="_blank" rel="noopener">github.com/aliwanga ↗</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Allan Mwanga · ACPS HUB</span>
+    <span>Building smart solutions for better communities</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  /* Copy email */
+  var btn = document.getElementById("copy");
+  var code = document.getElementById("email");
+  btn.addEventListener("click", function () {
+    var text = code.textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy email"; }, 1800); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(code);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "Press Ctrl+C";
+    }
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+
+  /* Network backdrop: drifting nodes that link up and lean toward the pointer */
+  var cv = document.getElementById("net");
+  var ctx = cv.getContext("2d");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var W = 0, H = 0, dpr = 1, nodes = [], mouse = { x: -9999, y: -9999 }, raf = 0;
+  var LINK = 150;
+
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var n = Math.max(28, Math.min(90, Math.round(W * H / 16000)));
+    nodes = [];
+    for (var i = 0; i < n; i++) {
+      nodes.push({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.6 + 0.8, warm: Math.random() < 0.22
+      });
+    }
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    var i, j, a, b, dx, dy, d, al;
+    for (i = 0; i < nodes.length; i++) {
+      a = nodes[i];
+      if (!reduce) {
+        a.x += a.vx; a.y += a.vy;
+        if (a.x < -20) a.x = W + 20; else if (a.x > W + 20) a.x = -20;
+        if (a.y < -20) a.y = H + 20; else if (a.y > H + 20) a.y = -20;
+        dx = mouse.x - a.x; dy = mouse.y - a.y; d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 180 && d > 1) { a.x += dx / d * 0.35; a.y += dy / d * 0.35; }
+      }
+    }
+    for (i = 0; i < nodes.length; i++) {
+      a = nodes[i];
+      for (j = i + 1; j < nodes.length; j++) {
+        b = nodes[j]; dx = a.x - b.x; dy = a.y - b.y; d = dx * dx + dy * dy;
+        if (d < LINK * LINK) {
+          al = (1 - Math.sqrt(d) / LINK) * 0.38;
+          ctx.strokeStyle = "rgba(63,216,200," + al.toFixed(3) + ")";
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      dx = a.x - mouse.x; dy = a.y - mouse.y; d = Math.sqrt(dx * dx + dy * dy);
+      if (d < 190) {
+        al = (1 - d / 190) * 0.6;
+        ctx.strokeStyle = "rgba(255,181,71," + al.toFixed(3) + ")";
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+      }
+      ctx.fillStyle = a.warm ? "rgba(255,181,71,.9)" : "rgba(190,240,235,.75)";
+      ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 6.2832); ctx.fill();
+    }
+    if (!reduce) raf = requestAnimationFrame(frame);
+  }
+
+  function start() { cancelAnimationFrame(raf); size(); frame(); }
+  window.addEventListener("resize", function () { start(); });
+  window.addEventListener("pointermove", function (e) { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  window.addEventListener("pointerleave", function () { mouse.x = mouse.y = -9999; });
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) cancelAnimationFrame(raf); else if (!reduce) { cancelAnimationFrame(raf); frame(); }
+  });
+  start();
+})();
+</script>
+</body>
+</html>
